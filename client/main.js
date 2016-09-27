@@ -4,7 +4,31 @@ import { Mongo } from 'meteor/mongo';
 import './main.html';
 
 //getting the comments collection for all the collections
-Comments = new Mongo.Collection('comments');
+const Comments = new Mongo.Collection('comments');
+
+Template.body.helpers({
+    showComments() {
+        return Comments.find({},{sort:{createdAt: -1}});
+    }
+});
+Template.body.events({
+    'submit .new-comment'(event) {
+        console.log(event);
+        event.preventDefault();
+        const target = event.target;
+        console.log(target);
+        const text = target.comment.value;
+        console.log(text);
+        Comments.insert({
+            text: text,
+            createdAt: new Date()
+        });
+        target.comment.value = '';
+    },
+    'click .delete'(event){
+        Comments.remove(this._id);
+    }
+})
 
 //Template.main
 

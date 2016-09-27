@@ -7,6 +7,21 @@
     <h1 style="text-align:center;">Public Feed</h1>
   </div>
   <div class="container">
-    {{> loginButtons}}
+    <!--{{> loginButtons}}-->
+    <form class="new-comment" method="POST">
+		<input type="text" name="comment" placeholder="Enter your comment here ..." class="form-control" />
+    </form>
+    <ul class="list-group">
+      {{#each showComments}}
+        {{>task}}
+      {{/each}}
+    </ul>
   </div>
 </body>
+
+<template name="task">
+  <li class="list-group-item">{{text}}
+	  <span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>
+  <span class="badge">{{createdAt}}</span>
+  </li>
+</template>
