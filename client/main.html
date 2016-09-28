@@ -4,27 +4,34 @@
 
 <body>
   <div class="jumbotron">
+    {{#if currentUser}}
+    <button class="btn btn-danger logout">Log Out</button>
+     {{/if}} 
     <h1 style="text-align:center;">Public Feed</h1>
   </div>
   <div class="container">
+    {{log currentUser}}
     <div align="center">
-      
+      {{#unless currentUser}}
       <button type="button" class="btn btn-primary">{{> loginButtons}}</button>
+      {{/unless}}
     </div>
     {{#if currentUser}}
     <form class="new-comment" method="POST">
       <input type="text" name="comment" placeholder="Enter your comment here ..." class="form-control" />
     </form>
     <ul class="list-group">
-      {{#each showComments}} {{>comment}} {{/each}}
+      {{#each ShowComments}} {{>comment}} {{/each}}
     </ul>
     {{/if}}
   </div>
 </body>
 
 <template name="comment">
-  <li class="list-group-item">{{text}}
-    <!--<span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>-->
-    <span class="badge">{{email}}</span>
+  <li class="list-group-item"><span>{{text}}</span>
+  {{log isowner}}
+    <span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>
+    {{log owner}}
+    <span class="badge">{{owner}}</span>
   </li>
 </template>
