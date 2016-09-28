@@ -13,13 +13,9 @@ Template.body.helpers({
 });
 Template.body.events({
     'submit .new-comment'(event) {
-        //console.log(event);
         event.preventDefault();
         const target = event.target;
-        //console.log(target);
         const text = target.comment.value;
-        //console.log(text);
-        //console.log(Meteor.user().emails[0].address);
         Comments.insert({
             text: text,
             ownerid: Meteor.userId(),
@@ -37,19 +33,4 @@ Template.body.events({
             return false;
         }
     }
-})
-
-//Template.main
-
-// Template.hello.helpers({
-//   counter() {
-//     return Template.instance().counter.get();
-//   },
-// });
-
-// Template.hello.events({
-//   'mouseup body'(event, instance) {
-//     // increment the counter when button is clicked
-//     instance.counter.set(instance.counter.get() + 1);
-//   },
-// });
+});

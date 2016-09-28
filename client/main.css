@@ -2,3 +2,20 @@
 ul{
     margin-top: 5em;
 }
+button a{
+    text-decoration: none !important;
+    color: #000 !important;
+}
+.accounts-dialog{
+    width: 20em;
+}
+.accounts-dialog input{
+    width: 80% !important;
+    float: right;
+}
+#login-email-label-and-input{
+    margin-bottom: 1em;
+}
+form{
+    margin-top: 2em;
+}

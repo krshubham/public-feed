@@ -7,24 +7,24 @@
     <h1 style="text-align:center;">Public Feed</h1>
   </div>
   <div class="container">
-    {{> loginButtons}}
+    <div align="center">
+      
+      <button type="button" class="btn btn-primary">{{> loginButtons}}</button>
+    </div>
     {{#if currentUser}}
     <form class="new-comment" method="POST">
-		<input type="text" name="comment" placeholder="Enter your comment here ..." class="form-control" />
+      <input type="text" name="comment" placeholder="Enter your comment here ..." class="form-control" />
     </form>
     <ul class="list-group">
-      {{#each showComments}}
-        {{>task}}
-      {{/each}}
+      {{#each showComments}} {{>comment}} {{/each}}
     </ul>
     {{/if}}
   </div>
 </body>
 
-<template name="task">
+<template name="comment">
   <li class="list-group-item">{{text}}
-    {{#if }}
-	  <span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>
-  <span class="badge">{{email}}</span>
+    <!--<span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>-->
+    <span class="badge">{{email}}</span>
   </li>
 </template>
