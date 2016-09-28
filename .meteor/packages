@@ -21,3 +21,5 @@ shell-server            # Server-side component of the `meteor shell` command
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 twbs:bootstrap
+accounts-ui
+accounts-password

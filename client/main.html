@@ -7,7 +7,8 @@
     <h1 style="text-align:center;">Public Feed</h1>
   </div>
   <div class="container">
-    <!--{{> loginButtons}}-->
+    {{> loginButtons}}
+    {{#if currentUser}}
     <form class="new-comment" method="POST">
 		<input type="text" name="comment" placeholder="Enter your comment here ..." class="form-control" />
     </form>
@@ -16,12 +17,14 @@
         {{>task}}
       {{/each}}
     </ul>
+    {{/if}}
   </div>
 </body>
 
 <template name="task">
   <li class="list-group-item">{{text}}
+    {{#if }}
 	  <span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>
-  <span class="badge">{{createdAt}}</span>
+  <span class="badge">{{email}}</span>
   </li>
 </template>

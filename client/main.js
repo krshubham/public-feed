@@ -13,20 +13,29 @@ Template.body.helpers({
 });
 Template.body.events({
     'submit .new-comment'(event) {
-        console.log(event);
+        //console.log(event);
         event.preventDefault();
         const target = event.target;
-        console.log(target);
+        //console.log(target);
         const text = target.comment.value;
-        console.log(text);
+        //console.log(text);
+        //console.log(Meteor.user().emails[0].address);
         Comments.insert({
             text: text,
+            ownerid: Meteor.userId(),
+            email: Meteor.user().emails[0].address,
             createdAt: new Date()
         });
         target.comment.value = '';
     },
     'click .delete'(event){
-        Comments.remove(this._id);
+        var conf = confirm("Are you sure you want to delete it?");
+        if(conf){
+            Comments.remove(this._id);
+        }
+        else{
+            return false;
+        }
     }
 })
 
