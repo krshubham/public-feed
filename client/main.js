@@ -21,18 +21,19 @@ Template.body.helpers({
 });
 
 
-Template.registerHelper('log',(what)=>{
-    console.log(what);
-    //console.log(Meteor.userId());
+Template.registerHelper('log',(something)=>{
+    console.log(something);
 });
 
 Template.body.events({
     'submit .new-comment'(event) {
         event.preventDefault();
-        //console.log(Meteor.user());
         const target = event.target;
         const text = target.comment.value;
-        console.log(text);
+        if(!text){
+            alert('Please Fill Something');
+            return false;
+        }
         Meteor.call('comments.insert',text);
         target.comment.value = '';
     },
@@ -42,7 +43,6 @@ Template.body.events({
     },
     'click .delete'(){
         Meteor.call('comments.delete',this._id,function(err,result){
-            console.log(err);
             if(err.error === 'not-authorized'){
                 alert("Sorry! You can't delete someone else's comment");
             }            

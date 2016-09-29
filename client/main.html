@@ -21,7 +21,9 @@
       <input type="text" name="comment" placeholder="Enter your comment here ..." class="form-control" />
     </form>
     <ul class="list-group">
-      {{#each ShowComments}} {{>comment}} {{/each}}
+      {{#each ShowComments}} 
+        {{>comment}}
+      {{/each}}
     </ul>
     {{/if}}
   </div>
@@ -32,6 +34,6 @@
   {{log isowner}}
     <span class="badge delete" style="color: red;background: transparent;font-size:1.2em;cursor:pointer;">&times;</span>
     {{log owner}}
-    <span class="badge">{{owner}}</span>
+    <span class="badge">{{email}}</span>
   </li>
 </template>

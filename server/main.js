@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-const Comments = new Mongo.Collection('comments');
+export const Comments = new Mongo.Collection('comments');
 
 if (Meteor.isServer) {
 	Meteor.publish('comments', () => {
@@ -11,16 +11,16 @@ if (Meteor.isServer) {
 
 
 Meteor.methods({
-	'comments.insert'(todo) {
-		check(todo, String);
+	'comments.insert'(comment) {
+		check(comment, String);
 		//in order to make sure that the user is loggedIn
 		if (!this.userId) {
 			throw new Meteor.Error('Unauthorized');
 		}
 		Comments.insert({
-			text: todo,
+			text: comment,
 			owner: this.userId,
-			email: Meteor.users.findOne(this.userId).username,
+			email: Meteor.users.findOne({_id: this.userId}, {fields: { emails: 1} }).emails[0].address,
 			createdAt: new Date()
 		});
 	},
